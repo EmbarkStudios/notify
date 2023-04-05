@@ -14,9 +14,9 @@ pub type FILE_ACCESS_FLAGS = u32;
 pub const FILE_LIST_DIRECTORY: FILE_ACCESS_FLAGS = 1;
 
 pub type FILE_SHARE_MODE = u32;
-pub const FILE_SHARE_DELETE: FILE_SHARE_MODE = 4;
 pub const FILE_SHARE_READ: FILE_SHARE_MODE = 1;
 pub const FILE_SHARE_WRITE: FILE_SHARE_MODE = 2;
+pub const FILE_SHARE_DELETE: FILE_SHARE_MODE = 4;
 
 pub type BOOL = i32;
 
@@ -87,7 +87,8 @@ pub type WIN32_ERROR = u32;
 pub const WAIT_OBJECT_0: WIN32_ERROR = 0;
 pub const ERROR_OPERATION_ABORTED: WIN32_ERROR = 995;
 
-#[link(name = "kernel32")]
+// won't function on x86, but we don't care about that platform
+#[link(name = "kernel32.dll", kind = "raw-dylib")]
 extern "system" {
     pub fn CreateFileW(
         lpFileName: *const u16,
