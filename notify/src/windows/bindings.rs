@@ -88,7 +88,7 @@ pub const WAIT_OBJECT_0: WIN32_ERROR = 0;
 pub const ERROR_OPERATION_ABORTED: WIN32_ERROR = 995;
 
 // won't function on x86, but we don't care about that platform
-#[link(name = "kernel32.dll", kind = "raw-dylib")]
+#[link(name = "kernel32")]
 extern "system" {
     pub fn CreateFileW(
         lpFileName: *const u16,
